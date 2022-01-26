@@ -5,6 +5,6 @@ describe("Hook: Use Airport", () => {
   it("should handle being called.", () => {
     const { result } = renderHook(() => useAirport());
 
-    expect(result.current.isLoading).toBeTruthy();
+    expect(result.current.isLoading).toBeFalsy();
   });
 });
