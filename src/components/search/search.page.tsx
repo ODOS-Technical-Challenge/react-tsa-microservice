@@ -11,10 +11,10 @@ const menu = [
 ];
 
 export const SearchPage: FunctionComponent = () => {
-  const { data, fetch, isLoading } = useAirport();
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const search = params.get("search");
+  const { data, fetch, isLoading } = useAirport(search || "");
 
   return (
     <Fragment>
