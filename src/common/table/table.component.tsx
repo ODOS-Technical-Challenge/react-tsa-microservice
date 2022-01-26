@@ -34,7 +34,7 @@ export const VirtualTable: FunctionComponent<Props> = ({
               headerFirst
               gridLayout={{ tablet: { col: 12 } }}
             >
-              <CardHeader>
+              <CardHeader style={{ marginLeft: "5rem" }}>
                 <h3 className="usa-card__heading">{row.name}</h3>
               </CardHeader>
               <CardMedia>
@@ -47,10 +47,10 @@ export const VirtualTable: FunctionComponent<Props> = ({
                     alignItems: "center",
                   }}
                 >
-                  {row.code}
+                  {row.shortcode}
                 </div>
               </CardMedia>
-              <CardBody>
+              <CardBody style={{ marginLeft: "5rem" }}>
                 <div>
                   {row.city}, {row.state}
                 </div>

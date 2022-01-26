@@ -1,5 +1,6 @@
 import axios from "axios";
 import { handleError } from "../utils";
+import * as airports from "./airport.json";
 // import { BACKEND_URL } from "../utils";
 // import { stringify } from "querystring";
 
@@ -14,9 +15,9 @@ export async function getAirportChecks(query: string) {
   const url = "https://my.api.mockaroo.com/airport.json?key=7d32a3f0";
 
   try {
-    const { data, status } = await axios.get(url);
+    const { status } = await axios.get(url);
 
-    return { data, status };
+    return { data: (airports as any).default, status };
   } catch (error) {
     return handleError(error, []);
   }
