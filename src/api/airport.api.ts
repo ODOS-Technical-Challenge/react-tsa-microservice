@@ -8,7 +8,9 @@ import { stringify } from "querystring";
  * @returns
  */
 export async function getAirportChecks(query: string) {
-  const url = `${BACKEND_URL}/airports/?${stringify({ query })}`;
+  // const url = `${BACKEND_URL}/airports/?${stringify({ query })}`;
+
+  const url = "https://my.api.mockaroo.com/airport.json?key=7d32a3f0";
 
   try {
     const { data, status } = await axios.get(url);

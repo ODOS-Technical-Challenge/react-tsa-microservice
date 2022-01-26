@@ -9,7 +9,6 @@ export const useAirport = (initial = "") => {
   const fetch = useCallback(async (query: string) => {
     setLoading(true);
     const result = await getAirportChecks(query);
-    console.log(result);
     setData(result.data);
     setLoading(false);
   }, []);
