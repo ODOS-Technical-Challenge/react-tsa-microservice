@@ -1,13 +1,12 @@
 import React, { Fragment, FunctionComponent } from "react";
 import { useSearch } from "../../hooks";
-import { Page, SubHeader, Search, TdTag, VirtualTable } from "../../common";
+import { Page, SubHeader, Search, VirtualTable } from "../../common";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const menu = [
-  { title: "Username", path: "username" },
-  { title: "First Name", path: "firstName" },
-  { title: "Last Name", path: "lastName" },
-  { title: "Role", path: "role", render: TdTag },
+  { title: "Airport", path: "name" },
+  { title: "City", path: "city" },
+  { title: "State", path: "state" },
 ];
 
 export const SearchPage: FunctionComponent = () => {
@@ -23,6 +22,7 @@ export const SearchPage: FunctionComponent = () => {
       <Page>
         <div>
           <Search
+            placeholder="Search by airport name, abbreviation, or location"
             value={search || ""}
             onClick={(value) => {
               fetch(value);

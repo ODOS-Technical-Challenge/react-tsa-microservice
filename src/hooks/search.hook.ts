@@ -10,20 +10,7 @@ export const useSearch = () => {
     console.log(query);
     // Mock call for now...
     const call = {
-      data: [
-        {
-          username: "jsmith",
-          firstName: "John",
-          lastName: "Smith",
-          role: "Admin",
-        },
-        {
-          username: "jdoe",
-          firstName: "Jane",
-          lastName: "Doe",
-          role: "Reviewer",
-        },
-      ],
+      data: [],
     };
 
     const { data } = call;

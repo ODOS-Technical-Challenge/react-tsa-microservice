@@ -5,6 +5,7 @@ import { useId, useValue } from "../index";
 export interface Props {
   value: string;
   id?: string;
+  placeholder?: string;
 
   onClick: (value: string) => void;
 }
@@ -12,6 +13,7 @@ export interface Props {
 export const Search: FunctionComponent<Props> = ({
   id,
   value,
+  placeholder,
   onClick,
 }: Props) => {
   const [internal, setInternal] = useValue(value);
@@ -20,6 +22,7 @@ export const Search: FunctionComponent<Props> = ({
   return (
     <div style={{ display: "flex", alignItems: "flex-end" }}>
       <TextInput
+        placeholder={placeholder}
         id={cid}
         name="search"
         type="text"
