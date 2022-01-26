@@ -4,13 +4,15 @@ import { getAirportChecks } from "../api/airport.api";
 
 export const useAirport = (initial = "") => {
   const [data, setData] = useState<any[]>([]);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
   const fetch = useCallback(async (query: string) => {
-    setLoading(true);
-    const result = await getAirportChecks(query);
-    setData(result.data);
-    setLoading(false);
+    if (query) {
+      setLoading(true);
+      const result = await getAirportChecks(query);
+      setData(result.data);
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
