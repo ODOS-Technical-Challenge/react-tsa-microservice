@@ -1,14 +1,9 @@
 import React, { Fragment, FunctionComponent } from "react";
-import { Page, SubHeader, Search, VirtualTable } from "../../common";
+import { Page, SubHeader, VirtualTable } from "../../common";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { useAirport } from "../../hooks";
-
-const menu = [
-  { title: "Airport", path: "name" },
-  { title: "City", path: "city" },
-  { title: "State", path: "state" },
-];
+import { Search } from "@trussworks/react-uswds";
 
 export const SearchPage: FunctionComponent = () => {
   const [params] = useSearchParams();
@@ -16,26 +11,32 @@ export const SearchPage: FunctionComponent = () => {
   const search = params.get("search");
   const { data, fetch, isLoading } = useAirport(search || "");
 
+  const onSubmit = (value: any) => {
+    fetch(value);
+    console.log(value);
+    navigate({
+      search: `?search=${value}`,
+    });
+  };
+
   return (
     <Fragment>
       <SubHeader />
 
       <Page>
         <div>
+          <h3>Welcome to MyTSA</h3>
+          <p>A way to help your trip to the airport be more efficient.</p>
+        </div>
+        <div>
           <Search
-            placeholder="Search by airport name, abbreviation, or location"
-            value={search || ""}
-            onClick={(value) => {
-              fetch(value);
-              navigate({
-                search: `?search=${value}`,
-              });
-            }}
+            placeholder="Search by airport name, abbriviation or location"
+            size="small"
+            onSubmit={onSubmit}
           />
         </div>
-
-        <VirtualTable {...{ menu, isLoading, data }} />
       </Page>
+      <VirtualTable {...{ isLoading, data }} />
     </Fragment>
   );
 };
