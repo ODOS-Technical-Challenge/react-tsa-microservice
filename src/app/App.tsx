@@ -6,7 +6,7 @@ import { ROUTES } from "../utils";
 
 import "./App.css";
 
-import { LoginPage, SearchPage, RequireAuth } from "../components";
+import { LoginPage, SearchPage } from "../components";
 
 export const App: FunctionComponent = () => {
   return (
@@ -19,9 +19,9 @@ export const App: FunctionComponent = () => {
             <Route
               {...ROUTES.Home}
               element={
-                <RequireAuth>
-                  <SearchPage />
-                </RequireAuth>
+                <SearchPage />
+                // <RequireAuth>
+                // </RequireAuth>
               }
             />
 
