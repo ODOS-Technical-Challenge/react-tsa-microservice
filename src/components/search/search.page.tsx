@@ -1,5 +1,5 @@
 import React, { Fragment, FunctionComponent } from "react";
-import { Page, SubHeader, VirtualTable } from "../../common";
+import { Page, SubHeader, VirtualCards } from "../../common";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { useAirport } from "../../hooks";
@@ -36,7 +36,7 @@ export const SearchPage: FunctionComponent = () => {
           />
         </div>
       </Page>
-      <VirtualTable {...{ isLoading, data }} />
+      <VirtualCards {...{ isLoading, data }} />
     </Fragment>
   );
 };
