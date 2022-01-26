@@ -1,20 +1,17 @@
 import React, { Fragment, FunctionComponent } from "react";
 import { useSearch } from "../../hooks";
-import { Page, SubHeader, Search, TdTag, VirtualTable } from "../../common";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Page, SubHeader, Search, VirtualTable } from "../../common";
+import { useNavigate } from "react-router-dom";
 
 const menu = [
-  { title: "Username", path: "username" },
-  { title: "First Name", path: "firstName" },
-  { title: "Last Name", path: "lastName" },
-  { title: "Role", path: "role", render: TdTag },
+  { title: "Airport", path: "name" },
+  { title: "City", path: "city" },
+  { title: "State", path: "state" },
 ];
 
 export const SearchPage: FunctionComponent = () => {
   const { data, fetch, isLoading } = useSearch();
-  const [params] = useSearchParams();
   const navigate = useNavigate();
-  const search = params.get("search");
 
   return (
     <Fragment>
@@ -23,7 +20,8 @@ export const SearchPage: FunctionComponent = () => {
       <Page>
         <div>
           <Search
-            value={search || ""}
+            placeholder="Search by airport name, abbreviation, or location"
+            value={""}
             onClick={(value) => {
               fetch(value);
               navigate({
