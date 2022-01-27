@@ -7,6 +7,7 @@ import { ROUTES } from "../utils";
 import "./App.css";
 
 import { LoginPage, SearchPage } from "../components";
+import { ViewPage } from "../components/view/view.page";
 
 export const App: FunctionComponent = () => {
   return (
@@ -24,6 +25,7 @@ export const App: FunctionComponent = () => {
                 // </RequireAuth>
               }
             />
+            <Route {...ROUTES.View} element={<ViewPage />} />
 
             {/** Fallback Redirect / Default Page */}
             <Route path="" element={<Navigate to={ROUTES.Home.path} />} />

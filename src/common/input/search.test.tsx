@@ -23,14 +23,14 @@ describe("Should render an editable text-area.", () => {
     render(<Search {...props} />);
     const input = screen.getByRole("textbox");
 
-    expect(input).toBeInTheDocument;
+    expect(input).toBeInTheDocument();
   });
 
   it("should handle rendering a button.", () => {
     render(<Search {...props} />);
     const button = screen.getByRole("button");
 
-    expect(button).toBeInTheDocument;
+    expect(button).toBeInTheDocument();
   });
 
   it("should handle an default value.", () => {

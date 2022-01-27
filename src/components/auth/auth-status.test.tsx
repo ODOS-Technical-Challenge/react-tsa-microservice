@@ -17,15 +17,15 @@ jest.mock("../../store/contexts", () => ({
 }));
 
 describe("Application Component: Auth State", () => {
-  it("should handle rendering the component.", () => {
+  it("should handle rendering the component.", async () => {
     render(<AuthStatus />);
-    const search = screen.findByRole("textbox");
-    expect(search).toBeInTheDocument;
+    const search = await screen.findByRole("button");
+    expect(search).toBeInTheDocument();
   });
 
-  it("click signout", () => {
+  it("click signout", async () => {
     render(<AuthStatus />);
-    const signout = screen.getByText("Sign out");
+    const signout = await screen.getByText("Sign out");
     fireEvent(
       signout,
       new MouseEvent("click", {
@@ -33,13 +33,13 @@ describe("Application Component: Auth State", () => {
         cancelable: true,
       })
     );
-    expect(signout).toBeInTheDocument;
+    expect(signout).toBeInTheDocument();
   });
 
-  it("user is logged in", () => {
+  it("user is logged in", async () => {
     user = null;
     render(<AuthStatus />);
-    const search = screen.findByRole("textbox");
-    expect(search).toBeInTheDocument;
+    const text = await screen.findByText("You are not logged in.");
+    expect(text).toBeInTheDocument();
   });
 });

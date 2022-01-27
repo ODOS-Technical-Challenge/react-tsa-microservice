@@ -5,8 +5,10 @@ import {
   CardGroup,
   CardHeader,
   CardMedia,
+  IconLink,
 } from "@trussworks/react-uswds";
 import { CenterPane, Loading } from "../index";
+import { ROUTES, structureRoute } from "../../utils";
 
 export interface Props<T = any> {
   data: T[];
@@ -17,7 +19,6 @@ export const VirtualCards: FunctionComponent<Props> = ({
   data,
   isLoading,
 }: Props) => {
-  console.log(data);
   return (
     <Fragment>
       {isLoading && (
@@ -27,6 +28,7 @@ export const VirtualCards: FunctionComponent<Props> = ({
       )}
       <CardGroup style={{ width: "740px", margin: "0 auto" }}>
         {data.map((row, i) => {
+          const link = structureRoute(ROUTES.View, { id: `${i}` });
           return (
             <Card
               key={`${row.path}-${i}`}
@@ -35,7 +37,12 @@ export const VirtualCards: FunctionComponent<Props> = ({
               gridLayout={{ tablet: { col: 12 } }}
             >
               <CardHeader>
-                <h3 className="usa-card__heading">{row.name}</h3>
+                <a href={link} className="usa-card__heading">
+                  {row.name}
+                </a>
+                <a href={link}>
+                  <IconLink height={32} />
+                </a>
               </CardHeader>
               <CardMedia>
                 <div

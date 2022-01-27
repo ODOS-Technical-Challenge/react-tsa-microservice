@@ -1,6 +1,7 @@
 import React, { FunctionComponent, ReactNode } from "react";
 import { Header } from "@trussworks/react-uswds";
 import logo from "../../assets/logo.png";
+import { ROUTES } from "../../utils";
 
 interface Props {
   children?: ReactNode;
@@ -16,7 +17,9 @@ export const SubHeader: FunctionComponent<Props> = ({ children }: Props) => {
     >
       <div className="usa-nav-container">
         <div className="usa-navbar">
-          <img height={32} src={logo} alt="logo" style={{ margin: "16px" }} />
+          <a href={ROUTES.Home.path}>
+            <img height={32} src={logo} alt="logo" style={{ margin: "16px" }} />
+          </a>
         </div>
         {children}
       </div>
