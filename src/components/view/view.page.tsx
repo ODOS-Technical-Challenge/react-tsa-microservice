@@ -16,12 +16,19 @@ export const ViewPage: FunctionComponent = () => {
     <Fragment>
       <SubHeader />
       <Page isLoading={isLoading}>
-        <IconButton
-          href={ROUTES.Home.path}
-          name="Back Button"
-          icon={IconArrowBack}
-        />
-        <Title>{data.airport}</Title>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <IconButton
+            href={ROUTES.Home.path}
+            name="Back Button"
+            icon={IconArrowBack}
+          />
+          <Title style={{ marginLeft: "16px" }}>{data.airport}</Title>
+        </div>
         <p>
           {data.city}, {data.state}
         </p>
