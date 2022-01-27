@@ -30,4 +30,18 @@ describe("Application Page: Search Page", () => {
     const button = await screen.findByRole("button");
     userEvent.click(button);
   });
+
+  it("should handle user interaction: 'search' action.", async () => {
+    render(
+      <BrowserRouter>
+        <SearchPage />
+      </BrowserRouter>
+    );
+
+    const search = await screen.findByLabelText("Search");
+    userEvent.type(search, "query");
+
+    const button = await screen.findByRole("button");
+    userEvent.click(button);
+  });
 });

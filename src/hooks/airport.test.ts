@@ -14,4 +14,11 @@ describe("Hook: Use Airport", () => {
 
     expect(result.current.isLoading).toBeTruthy();
   });
+
+  it("should handle being called with query.", () => {
+    // mockedFunction.mockResolvedValue({ data: [], status: 200 });
+    const { result } = renderHook(() => useAirport("Dulles"));
+
+    expect(result.current.isLoading).toBeTruthy();
+  });
 });
