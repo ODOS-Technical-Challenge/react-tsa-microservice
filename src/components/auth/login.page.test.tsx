@@ -20,15 +20,15 @@ jest.mock("../../store/contexts", () => ({
 }));
 
 describe("Application Page: Login Page", () => {
-  it("should handle rendering the component.", () => {
+  it("should handle rendering the component.", async () => {
     render(<LoginPage />);
-    const search = screen.findByText("Username");
-    expect(search).toBeInTheDocument;
+    const search = await screen.findByText("Username");
+    expect(search).toBeInTheDocument();
   });
 
-  it("triggers submit", () => {
+  it("triggers submit", async () => {
     render(<LoginPage />);
-    const login = screen.getByText("Login");
+    const login = await screen.getByText("Login");
     fireEvent(
       login,
       new MouseEvent("click", {
@@ -36,6 +36,6 @@ describe("Application Page: Login Page", () => {
         cancelable: true,
       })
     );
-    expect(login).toBeInTheDocument;
+    expect(login).toBeInTheDocument();
   });
 });

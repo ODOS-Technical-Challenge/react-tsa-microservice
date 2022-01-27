@@ -3,29 +3,26 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 
-import { SearchPage } from "./search.page";
+import { ViewPage } from "./view.page";
 
-describe("Application Page: Search Page", () => {
+describe("Application Page: View Search Results Page", () => {
   it("should handle rendering the component.", async () => {
     render(
       <BrowserRouter>
-        <SearchPage />
+        <ViewPage />
       </BrowserRouter>
     );
 
-    const search = await screen.findByLabelText("Search");
-    expect(search).toBeInTheDocument();
+    const button = await screen.findByRole("button");
+    expect(button).toBeInTheDocument();
   });
 
-  it("should handle user interaction: 'search' action.", async () => {
+  it("should handle user interaction: 'back' action.", async () => {
     render(
       <BrowserRouter>
-        <SearchPage />
+        <ViewPage />
       </BrowserRouter>
     );
-
-    const search = await screen.findByLabelText("Search");
-    userEvent.type(search, "query");
 
     const button = await screen.findByRole("button");
     userEvent.click(button);

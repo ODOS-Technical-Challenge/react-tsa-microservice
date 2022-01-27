@@ -4,3 +4,4 @@ export { ROUTES } from "./routes";
 
 /** Utility Functions **/
 export { handleError } from "./api.utils";
+export { structureRoute } from "./routes.utils";

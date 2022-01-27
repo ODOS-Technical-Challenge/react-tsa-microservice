@@ -26,13 +26,13 @@ describe("Application Page: Auth Store", () => {
     );
   });
 
-  it("calls signin", () => {
+  it("calls signin", async () => {
     render(
       <AuthStore>
         <LoginPage />
       </AuthStore>
     );
-    const login = screen.getByText("Login");
+    const login = await screen.getByText("Login");
     fireEvent(
       login,
       new MouseEvent("click", {
@@ -40,17 +40,17 @@ describe("Application Page: Auth Store", () => {
         cancelable: true,
       })
     );
-    expect(login).toBeInTheDocument;
+    expect(login).toBeInTheDocument();
   });
 
-  it("click signout", () => {
+  it("click signout", async () => {
     authProvider.user = "test";
     render(
       <AuthStore>
         <AuthStatus />
       </AuthStore>
     );
-    const signout = screen.getByText("Sign out");
+    const signout = await screen.getByText("Sign out");
     fireEvent(
       signout,
       new MouseEvent("click", {
@@ -58,6 +58,6 @@ describe("Application Page: Auth Store", () => {
         cancelable: true,
       })
     );
-    expect(signout).toBeInTheDocument;
+    expect(signout).toBeInTheDocument();
   });
 });
