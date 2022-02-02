@@ -9,6 +9,7 @@ import {
 } from "@trussworks/react-uswds";
 import { CenterPane, Loading } from "../index";
 import { ROUTES, structureRoute } from "../../utils";
+import { ChartHistory } from "../../components/history/history.component";
 
 export interface Props<T = any> {
   data: T[];
@@ -62,6 +63,7 @@ export const VirtualCards: FunctionComponent<Props> = ({
                 <div>
                   {row.city}, {row.state}
                 </div>
+                <ChartHistory code={row.shortcode} />
               </CardBody>
             </Card>
           );

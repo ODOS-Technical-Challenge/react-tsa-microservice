@@ -51,7 +51,7 @@ export const ViewPage: FunctionComponent = () => {
           <p>Wait time: {data.times}</p>
         </Pane>
 
-        <ChartHistory />
+        <ChartHistory code={data.shortcode} />
       </Page>
     </Fragment>
   );
