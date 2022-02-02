@@ -24,29 +24,22 @@ export async function getAirportChecks(searchValue: string) {
  * @param id airport id
  * @returns airport data
  */
-export async function getAirport(id: string) {
-  // const url = `${BACKEND_URL}/airport/${id}`;
-  console.log(id);
-  const data = {
-    airport: "Dulles",
-    city: "Sterling",
-    state: "VA",
-    times: "20min",
-  };
-
-  const status = 200;
+export async function getAirport(searchValue: string) {
+  const url = `${BACKEND_URL}/airportSearch/?${stringify({ searchValue })}`;
 
   try {
-    // const { data, status } = await axios.get(url);
+    const { data, status } = await axios.get(url);
 
-    return { data, status };
+    return { data: data?.[0] || {}, status };
   } catch (error) {
     return handleError(error, {});
   }
 }
 
-export async function getAirportWaitTime(code: string) {
-  const url = `${BACKEND_URL}/waitTime/?${stringify({ code })}`;
+export async function getAirportWaitTime(airportShortCode: string) {
+  const url = `${BACKEND_URL}/airportHistoricWaitTimes/?${stringify({
+    airportShortCode,
+  })}`;
 
   try {
     const { data, status } = await axios.get(url);
