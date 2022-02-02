@@ -26,7 +26,3 @@ export { Loading } from "./loading/loading.component";
 
 /** Common List Components **/
 export { VirtualCards } from "./list/card.component";
-
-/** Common Table Component **/
-export { VirtualTable } from "./table/table.component";
-export { TdTag } from "./table/tag.td";

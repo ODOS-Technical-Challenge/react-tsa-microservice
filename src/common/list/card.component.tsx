@@ -56,13 +56,11 @@ export const VirtualCards: FunctionComponent<Props> = ({
                     alignItems: "center",
                   }}
                 >
-                  {row.code}
+                  {row.shortcode}
                 </div>
               </CardMedia>
               <CardBody>
-                <div>
-                  {row.city}, {row.state}
-                </div>
+                {row.city}, {row.state}
                 <ChartHistory code={row.shortcode} />
               </CardBody>
             </Card>
