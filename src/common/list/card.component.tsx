@@ -16,15 +16,19 @@ import { ChartHistory } from "../../components/history/history.component";
 export interface Props<T = any> {
   data: T[];
   favorites?: T[];
+  selected?: T[];
   isLoading?: boolean;
   addFavorites?: any;
+  addSelected?: any;
 }
 
 export const VirtualCards: FunctionComponent<Props> = ({
   data,
   favorites,
+  selected,
   isLoading,
   addFavorites,
+  addSelected,
 }: Props) => {
   return (
     <Fragment>
@@ -40,9 +44,12 @@ export const VirtualCards: FunctionComponent<Props> = ({
             <Card
               key={`${row.path}-${i}`}
               layout="flagDefault"
-              className="airport-card"
+              className={`airport-card ${
+                selected?.find((x) => x.name === row.name) && "selected"
+              }`}
               headerFirst
               gridLayout={{ tablet: { col: 12 } }}
+              onClick={() => addSelected(row)}
             >
               <CardHeader>
                 <a href={link} className="usa-card__heading">
@@ -51,18 +58,20 @@ export const VirtualCards: FunctionComponent<Props> = ({
                 <a href={link}>
                   <IconLink height={32} />
                 </a>
-                <div style={{ float: "right" }}>
-                  <IconButton
-                    name="favorite"
-                    onClick={() => addFavorites(row)}
-                    icon={
-                      favorites?.find((x) => x.name === row.name)
-                        ? IconFavorite
-                        : IconFavoriteBorder
-                    }
-                    appearance="muted"
-                  />
-                </div>
+                {selected?.find((x) => x.name === row.name) && (
+                  <div style={{ float: "right" }}>
+                    <IconButton
+                      name="favorite"
+                      onClick={() => addFavorites(row)}
+                      icon={
+                        favorites?.find((x) => x.name === row.name)
+                          ? IconFavorite
+                          : IconFavoriteBorder
+                      }
+                      appearance="muted"
+                    />
+                  </div>
+                )}
               </CardHeader>
               <CardMedia>
                 <div
@@ -79,7 +88,9 @@ export const VirtualCards: FunctionComponent<Props> = ({
               </CardMedia>
               <CardBody>
                 {row.city}, {row.state}
-                <ChartHistory code={row.shortcode} />
+                {selected?.find((x) => x.name === row.name) && (
+                  <ChartHistory code={row.shortcode} />
+                )}
               </CardBody>
             </Card>
           );

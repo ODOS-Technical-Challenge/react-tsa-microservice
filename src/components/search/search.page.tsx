@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAirports } from "../../hooks";
 import { Search } from "@trussworks/react-uswds";
 import { useFavorites } from "../../hooks/favorites.hook";
+import { useSelected } from "../../hooks/selected.hook";
 
 export const SearchPage: FunctionComponent = () => {
   const [params] = useSearchParams();
@@ -12,6 +13,7 @@ export const SearchPage: FunctionComponent = () => {
   const search = params.get("search");
   const { data, fetch, isLoading } = useAirports(search || "");
   const { favorites, addFavorites } = useFavorites();
+  const { selected, addSelected } = useSelected();
 
   const onSubmit = (value: any) => {
     fetch(value);
@@ -37,7 +39,9 @@ export const SearchPage: FunctionComponent = () => {
           />
         </div>
       </Page>
-      <VirtualCards {...{ isLoading, data, favorites, addFavorites }} />
+      <VirtualCards
+        {...{ isLoading, data, favorites, addFavorites, selected, addSelected }}
+      />
     </Fragment>
   );
 };
