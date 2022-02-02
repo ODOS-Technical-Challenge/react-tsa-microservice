@@ -1,13 +1,13 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { useWaitTime } from "./waitTime.hook";
-import { getAirportChecks } from "../api/airport.api";
+import { getAirportWaitTime } from "../api/airport.api";
 
 jest.mock("../api/airport.api", () => ({
-  getAirportChecks: jest.fn(),
+  getAirportWaitTime: jest.fn(),
 }));
 
-const mockedFunction = getAirportChecks as jest.MockedFunction<
-  typeof getAirportChecks
+const mockedFunction = getAirportWaitTime as jest.MockedFunction<
+  typeof getAirportWaitTime
 >;
 
 describe("Hook: Use Airport", () => {
