@@ -7,14 +7,28 @@ interface Props {
   name: string;
 
   href?: string;
+  onClick?: VoidFunction;
+
+  appearance?: "muted" | "default";
+  iconSize?: number;
 }
 
 export const IconButton: FunctionComponent<Props> = ({
+  appearance,
   href,
   icon,
   name,
+  ...props
 }: Props) => {
   const Icon = icon;
+
+  const style: Record<string, string> = {};
+
+  if (appearance === "muted") {
+    style.backgroundColor = "transparent";
+    style.border = "none";
+  }
+
   if (href) {
     return (
       <Link to={href}>
@@ -29,7 +43,12 @@ export const IconButton: FunctionComponent<Props> = ({
     );
   }
   return (
-    <button name={name} type="button" style={{ height: "32px", width: "32px" }}>
+    <button
+      name={name}
+      type="button"
+      style={{ height: "32px", width: "32px", ...style }}
+      {...props}
+    >
       <Icon />
     </button>
   );

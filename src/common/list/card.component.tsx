@@ -33,6 +33,8 @@ export const VirtualCards: FunctionComponent<Props> = ({
             <Card
               key={`${row.path}-${i}`}
               layout="flagDefault"
+              className="airport-card"
+              headerFirst
               gridLayout={{ tablet: { col: 12 } }}
             >
               <CardHeader>
