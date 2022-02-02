@@ -1,5 +1,6 @@
 /** Common Button Component **/
 export { IconButton } from "./button/iconButton.component";
+export { FavoriteButton } from "./button/favorite.button";
 
 /** Common Header Component **/
 export { Header } from "./header/header.component";

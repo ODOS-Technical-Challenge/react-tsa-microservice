@@ -26,38 +26,38 @@ describe("Application Page: Auth Store", () => {
     );
   });
 
-  it("calls signin", async () => {
+  it("should handle user event: login-in", async () => {
     render(
       <AuthStore>
         <LoginPage />
       </AuthStore>
     );
-    const login = await screen.getByText("Login");
+    const button = await screen.getByText("Login");
     fireEvent(
-      login,
+      button,
       new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
       })
     );
-    expect(login).toBeInTheDocument();
+    expect(button).toBeInTheDocument();
   });
 
-  it("click signout", async () => {
+  it("should handle user event: logout.", async () => {
     authProvider.user = "test";
     render(
       <AuthStore>
         <AuthStatus />
       </AuthStore>
     );
-    const signout = await screen.getByText("Sign out");
+    const button = await screen.getByText("Sign out");
     fireEvent(
-      signout,
+      button,
       new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
       })
     );
-    expect(signout).toBeInTheDocument();
+    expect(button).toBeInTheDocument();
   });
 });
