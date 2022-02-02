@@ -2,6 +2,7 @@ import axios from "axios";
 import { handleError } from "../utils";
 import { BACKEND_URL } from "../utils";
 import { stringify } from "querystring";
+import * as airports from "./airport.json";
 
 /**
  * Get Airports based on provided query
@@ -13,7 +14,7 @@ export async function getAirportChecks(searchValue: string) {
   try {
     const { status, data } = await axios.get(url);
 
-    return { data, status };
+    return { data: (airports as any).default, status };
   } catch (error) {
     return handleError(error, []);
   }

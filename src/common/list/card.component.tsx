@@ -5,19 +5,25 @@ import {
   CardGroup,
   CardHeader,
   CardMedia,
+  IconFavorite,
+  IconFavoriteBorder,
   IconLink,
 } from "@trussworks/react-uswds";
-import { CenterPane, Loading } from "../index";
+import { CenterPane, IconButton, Loading } from "../index";
 import { ROUTES, structureRoute } from "../../utils";
 
 export interface Props<T = any> {
   data: T[];
-  isLoading: boolean;
+  favorites?: T[];
+  isLoading?: boolean;
+  addFavorites?: any;
 }
 
 export const VirtualCards: FunctionComponent<Props> = ({
   data,
+  favorites,
   isLoading,
+  addFavorites,
 }: Props) => {
   return (
     <Fragment>
@@ -44,6 +50,18 @@ export const VirtualCards: FunctionComponent<Props> = ({
                 <a href={link}>
                   <IconLink height={32} />
                 </a>
+                <div style={{ float: "right" }}>
+                  <IconButton
+                    name="favorite"
+                    onClick={() => addFavorites(row)}
+                    icon={
+                      favorites?.find((x) => x.name === row.name)
+                        ? IconFavorite
+                        : IconFavoriteBorder
+                    }
+                    appearance="muted"
+                  />
+                </div>
               </CardHeader>
               <CardMedia>
                 <div

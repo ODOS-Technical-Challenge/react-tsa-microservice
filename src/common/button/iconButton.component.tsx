@@ -9,7 +9,7 @@ interface Props {
   href?: string;
   onClick?: VoidFunction;
 
-  appearance?: "muted" | "default";
+  appearance?: "muted" | "default" | "success";
   iconSize?: number;
 }
 

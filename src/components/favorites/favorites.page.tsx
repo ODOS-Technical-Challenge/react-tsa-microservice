@@ -9,7 +9,7 @@ export const FavoritesPage: FunctionComponent = () => {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const search = params.get("search");
-  const { data, fetch } = useFavorites(search || "");
+  const { favorites, fetch, addFavorites } = useFavorites(search || "");
 
   const onSubmit = (value: any) => {
     fetch(value);
@@ -28,13 +28,18 @@ export const FavoritesPage: FunctionComponent = () => {
         </div>
         <div>
           <Search
-            placeholder="Search by airport name, abbriviation or location"
+            placeholder={"Search by airport name, abbriviation or location"}
             size="small"
             onSubmit={onSubmit}
           />
         </div>
       </Page>
-      <VirtualCards data={data} isLoading={false} />
+      <VirtualCards
+        data={favorites}
+        isLoading={false}
+        favorites={favorites}
+        addFavorites={addFavorites}
+      />
     </Fragment>
   );
 };
