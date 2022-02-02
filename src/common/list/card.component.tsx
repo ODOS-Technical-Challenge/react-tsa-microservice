@@ -26,7 +26,7 @@ export const VirtualCards: FunctionComponent<Props> = ({
           <Loading />
         </CenterPane>
       )}
-      <CardGroup style={{ width: "740px", margin: "0 auto" }}>
+      <CardGroup style={{ width: "50vw", margin: "0 auto" }}>
         {data.map((row, i) => {
           const link = structureRoute(ROUTES.View, { id: `${i}` });
           return (
@@ -48,11 +48,18 @@ export const VirtualCards: FunctionComponent<Props> = ({
               <CardMedia>
                 <div
                   style={{
-                    width: "80px",
-                    height: "80px",
+                    width: "60px",
+                    height: "60px",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    borderRadius: "50%",
+                    background: "#BC0030",
+                    color: "white",
+                    fontWeight: "600",
+                    fontSize: "1.5rem",
+                    textTransform: "uppercase",
+                    margin: "15px 0 0 15px",
                   }}
                 >
                   {row.code}
