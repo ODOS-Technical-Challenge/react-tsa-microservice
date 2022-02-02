@@ -15,6 +15,7 @@ import {
 } from "@trussworks/react-uswds";
 import { useAirport } from "../../hooks";
 import { ROUTES } from "../../utils";
+import { ChartHistory } from "../history/history.component";
 
 /**
  * View a specific airport
@@ -49,6 +50,8 @@ export const ViewPage: FunctionComponent = () => {
         <Pane>
           <p>Wait time: {data.times}</p>
         </Pane>
+
+        <ChartHistory />
       </Page>
     </Fragment>
   );
