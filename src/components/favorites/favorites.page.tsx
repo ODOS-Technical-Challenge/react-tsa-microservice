@@ -1,19 +1,18 @@
 import React, { Fragment, FunctionComponent } from "react";
-import { Page, SubHeader, VirtualTable } from "../../common";
+import { Page, SubHeader, VirtualCards } from "../../common";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { Search } from "@trussworks/react-uswds";
 import { useFavorites } from "../../hooks/favorites.hook";
 
-export const SearchPage: FunctionComponent = () => {
+export const FavoritesPage: FunctionComponent = () => {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const search = params.get("search");
-  const { data, fetch, isLoading } = useFavorites(search || "");
+  const { data, fetch } = useFavorites(search || "");
 
   const onSubmit = (value: any) => {
     fetch(value);
-    console.log(value);
     navigate({
       search: `?search=${value}`,
     });
@@ -25,8 +24,7 @@ export const SearchPage: FunctionComponent = () => {
 
       <Page>
         <div>
-          <h3>Welcome to MyTSA</h3>
-          <p>A way to help your trip to the airport be more efficient.</p>
+          <h3>Favorites</h3>
         </div>
         <div>
           <Search
@@ -36,7 +34,7 @@ export const SearchPage: FunctionComponent = () => {
           />
         </div>
       </Page>
-      <VirtualTable {...{ isLoading, data }} />
+      <VirtualCards data={data} isLoading={false} />
     </Fragment>
   );
 };

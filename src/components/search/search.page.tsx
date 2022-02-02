@@ -13,7 +13,6 @@ export const SearchPage: FunctionComponent = () => {
 
   const onSubmit = (value: any) => {
     fetch(value);
-    console.log(value);
     navigate({
       search: `?search=${value}`,
     });

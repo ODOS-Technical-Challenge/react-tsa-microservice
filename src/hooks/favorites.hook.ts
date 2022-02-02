@@ -2,10 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 
 export const useFavorites = (initial = "") => {
   const [data, setData] = useState<any[]>([]);
-  const [isLoading, setLoading] = useState(false);
 
   const fetch = useCallback(async (query: string) => {
-    setLoading(true);
     const favorites = localStorage.getItem("favorites");
     if (favorites) {
       const d = JSON.parse(favorites);
@@ -26,12 +24,11 @@ export const useFavorites = (initial = "") => {
       }
       setData(d);
     }
-    setLoading(false);
   }, []);
 
   useEffect(() => {
     fetch(initial);
   }, [fetch]);
 
-  return { data, isLoading, fetch };
+  return { data, fetch };
 };
