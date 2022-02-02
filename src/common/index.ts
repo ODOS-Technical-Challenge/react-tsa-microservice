@@ -15,6 +15,9 @@ export { Page } from "./page.component";
 export { CenterPane } from "./layout/center.pane";
 export { Pane } from "./layout/pane";
 
+/** Common Dropdown Components **/
+export { Dropdown } from "./dropdown/dropdown.component";
+
 /** Common Input Components **/
 export { Search } from "./input/search.field";
 

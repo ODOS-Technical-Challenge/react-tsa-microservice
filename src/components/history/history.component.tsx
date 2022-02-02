@@ -1,68 +1,38 @@
 import React, { FunctionComponent } from "react";
-import {
-  BarChart,
-  Bar,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { BarChart, Bar, XAxis, Tooltip } from "recharts";
+import { Dropdown } from "../../common";
+import { useWaitTime } from "../../hooks";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
+const fallback = [
+  10, 20, 30, 40, 50, 10, 20, 30, 40, 90, 90, 120, 120, 160, 250, 30, 40, 50,
+  10, 120, 120, 160, 250, 30,
 ];
 
-export const ChartHistory: FunctionComponent = () => {
+const transform = (data: number[]) => {
+  return data.map((data, index) => {
+    const time = (index % 12) + 1;
+    if (!(time % 3)) {
+      return { name: `${time}`, min: data };
+    } else {
+      return { min: data };
+    }
+  });
+};
+
+interface Props {
+  code: string;
+}
+
+export const ChartHistory: FunctionComponent<Props> = ({ code }: Props) => {
+  const { data } = useWaitTime(code);
+
+  const all = transform(data.length ? data : fallback);
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <Dropdown title="Predicted wait times">
       <BarChart
         width={500}
         height={300}
-        data={data}
+        data={all}
         margin={{
           top: 5,
           right: 30,
@@ -70,14 +40,10 @@ export const ChartHistory: FunctionComponent = () => {
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
-        <YAxis />
         <Tooltip />
-        <Legend />
-        <Bar dataKey="pv" fill="#8884d8" />
-        <Bar dataKey="uv" fill="#82ca9d" />
+        <Bar dataKey="min" fill="#255ea2" />
       </BarChart>
-    </ResponsiveContainer>
+    </Dropdown>
   );
 };
