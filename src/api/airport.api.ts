@@ -45,3 +45,15 @@ export async function getAirport(id: string) {
     return handleError(error, {});
   }
 }
+
+export async function getAirportWaitTime(code: string) {
+  const url = `${BACKEND_URL}/waitTime/?${stringify({ code })}`;
+
+  try {
+    const { data, status } = await axios.get(url);
+
+    return { data, status };
+  } catch (error) {
+    return handleError(error, []);
+  }
+}
