@@ -29,7 +29,7 @@ export const VirtualCards: FunctionComponent<Props> = ({
       )}
       <CardGroup style={{ width: "740px", margin: "0 auto" }}>
         {data.map((row, i) => {
-          const link = structureRoute(ROUTES.View, { id: `${i}` });
+          const link = structureRoute(ROUTES.View, { id: `${row.shortcode}` });
           return (
             <Card
               key={`${row.path}-${i}`}

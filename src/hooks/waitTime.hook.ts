@@ -9,7 +9,7 @@ export const useWaitTime = (code: string) => {
   const fetch = useCallback(async () => {
     setLoading(true);
     const result = await getAirportWaitTime(code);
-    setData(result.data);
+    setData(result.data?.currentWaitMinutes || []);
     setLoading(false);
   }, [code]);
 
