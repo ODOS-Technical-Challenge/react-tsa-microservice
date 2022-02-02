@@ -12,6 +12,7 @@ const mockedFunction = getAirportWaitTime as jest.MockedFunction<
 
 describe("Hook: Use Airport", () => {
   it("should handle being called.", () => {
+    mockedFunction.mockResolvedValue({ data: [], status: 200 });
     const { result } = renderHook(() => useWaitTime("IAD"));
 
     expect(result.current.isLoading).toBeTruthy();
