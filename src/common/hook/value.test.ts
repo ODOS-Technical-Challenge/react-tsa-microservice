@@ -19,4 +19,18 @@ describe("Common Hook: Use Value", () => {
 
     expect(result.current[0]).toEqual("update");
   });
+
+  it("should handle a new initial value.", () => {
+    const { result, rerender } = renderHook(({ text }) => useValue(text), {
+      initialProps: { text: "Test String" },
+    });
+
+    act(() => {
+      result.current[1]("update");
+    });
+
+    rerender({ text: "goodbye" });
+
+    expect(result.current[0]).toEqual("goodbye");
+  });
 });
