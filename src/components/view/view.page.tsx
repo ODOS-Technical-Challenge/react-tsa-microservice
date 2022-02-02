@@ -1,7 +1,18 @@
 import React, { Fragment, FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
-import { IconButton, Page, Pane, SubHeader } from "../../common";
-import { IconArrowBack, Title } from "@trussworks/react-uswds";
+import {
+  FavoriteButton,
+  IconButton,
+  Page,
+  Pane,
+  SubHeader,
+} from "../../common";
+import {
+  IconArrowBack,
+  IconFavorite,
+  IconFavoriteBorder,
+  Title,
+} from "@trussworks/react-uswds";
 import { useAirport } from "../../hooks";
 import { ROUTES } from "../../utils";
 
@@ -27,11 +38,13 @@ export const ViewPage: FunctionComponent = () => {
             name="Back Button"
             icon={IconArrowBack}
           />
-          <Title style={{ marginLeft: "16px" }}>{data.airport}</Title>
+          <h2 style={{ marginLeft: "16px" }}>{data.airport}</h2>
         </div>
         <p>
           {data.city}, {data.state}
         </p>
+
+        <FavoriteButton />
 
         <Pane>
           <p>Wait time: {data.times}</p>

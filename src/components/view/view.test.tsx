@@ -13,8 +13,11 @@ describe("Application Page: View Search Results Page", () => {
       </BrowserRouter>
     );
 
-    const button = await screen.findByRole("button");
-    expect(button).toBeInTheDocument();
+    const buttons = await screen.findAllByRole("button");
+
+    for (const button of buttons) {
+      expect(button).toBeInTheDocument();
+    }
   });
 
   it("should handle user interaction: 'back' action.", async () => {
@@ -24,7 +27,10 @@ describe("Application Page: View Search Results Page", () => {
       </BrowserRouter>
     );
 
-    const button = await screen.findByRole("button");
-    userEvent.click(button);
+    const buttons = await screen.findAllByRole("button");
+
+    for (const button of buttons) {
+      userEvent.click(button);
+    }
   });
 });
