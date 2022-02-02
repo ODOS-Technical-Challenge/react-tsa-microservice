@@ -8,3 +8,24 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.usa-card__img {
+  background: none !important;
+}
+.usa-card__container {
+  margin: 0 !important;
+  border-radius: 15px !important;
+  box-shadow: #00000085 0px 0px 7px !important;
+  border: none !important;
+}
+
+.usa-card--flag .usa-card__header, .usa-card--flag .usa-card__body, .usa-card--flag .usa-card__footer {
+  margin-left: 5rem !important;
+}
+
+.usa-card__heading {
+  color: #255EA2 !important;
+  text-decoration: none !important;
+  font-family: sans-serif !important;
+  font-weight: 500 !important;
+}

@@ -1,28 +1,42 @@
 import { useCallback, useEffect, useState } from "react";
 
 export const useFavorites = (initial = "") => {
-  const [data, setData] = useState<any[]>([]);
+  const [favorites, setFavorites] = useState<any[]>([]);
 
-  const fetch = useCallback(async (query: string) => {
+  const addFavorites = (airport: any) => {
     const favorites = localStorage.getItem("favorites");
+    let list: any[] = JSON.parse(favorites || "[]");
+    if (list.find((x: any) => x.name === airport.name)) {
+      list = list.filter((x: any) => x.name !== airport.name);
+    } else {
+      list.unshift(airport);
+    }
+    localStorage.setItem("favorites", JSON.stringify(list));
+    setFavorites(list);
+  };
+
+  const fetch = useCallback(async (q: string) => {
+    const query = q.toLocaleLowerCase();
+    const favorites = localStorage.getItem("favorites");
+    let result = [];
     if (favorites) {
-      const d = JSON.parse(favorites);
+      result = JSON.parse(favorites || "[]");
       if (query) {
-        (d || []).filter((x: { [d: string]: string }) => {
+        result = result.filter((x: { [d: string]: string }) => {
           for (const prop in x) {
             switch (prop) {
               case "name":
               case "shortcode":
               case "city":
               case "state":
-                if (x[prop].includes(query)) {
+                if (x[prop].toLocaleLowerCase().includes(query)) {
                   return x;
                 }
             }
           }
         });
       }
-      setData(d);
+      setFavorites(result);
     }
   }, []);
 
@@ -30,5 +44,5 @@ export const useFavorites = (initial = "") => {
     fetch(initial);
   }, [fetch]);
 
-  return { data, fetch };
+  return { favorites, fetch, addFavorites };
 };
