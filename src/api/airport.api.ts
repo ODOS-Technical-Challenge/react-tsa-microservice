@@ -11,7 +11,7 @@ export async function getAirportChecks(searchValue: string) {
   const url = `${BACKEND_URL}/airportSearch/?${stringify({ searchValue })}`;
 
   try {
-    const { data, status } = await axios.get(url);
+    const { status, data } = await axios.get(url);
 
     return { data, status };
   } catch (error) {
@@ -26,7 +26,7 @@ export async function getAirportChecks(searchValue: string) {
  */
 export async function getAirport(id: string) {
   // const url = `${BACKEND_URL}/airport/${id}`;
-
+  console.log(id);
   const data = {
     airport: "Dulles",
     city: "Sterling",

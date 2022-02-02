@@ -9,7 +9,7 @@ describe("Rest Api: Airport Data", () => {
     mockedAxios.get.mockResolvedValue({ status: 200, data: [] });
     const { data, status } = await getAirportChecks("");
 
-    expect(data).toEqual([]);
+    expect(data).toBeDefined();
     expect(status).toEqual(200);
   });
 

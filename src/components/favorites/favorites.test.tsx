@@ -3,35 +3,21 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 
-import { SearchPage } from "./search.page";
+import { FavoritesPage } from "./favorites.page";
 
 describe("Application Page: Search Page", () => {
   it("should handle rendering the component.", async () => {
     render(
       <BrowserRouter>
-        <SearchPage />
+        <FavoritesPage />
       </BrowserRouter>
     );
-
-    const search = await screen.findByLabelText("Search");
-    expect(search).toBeInTheDocument();
   });
 
   it("should handle user interaction: 'search' action.", async () => {
     render(
       <BrowserRouter>
-        <SearchPage />
-      </BrowserRouter>
-    );
-
-    const search = await screen.findByLabelText("Search");
-    userEvent.type(search, "query");
-  });
-
-  it("should handle user interaction: 'search' action.", async () => {
-    render(
-      <BrowserRouter>
-        <SearchPage />
+        <FavoritesPage />
       </BrowserRouter>
     );
 
