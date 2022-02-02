@@ -33,7 +33,6 @@ export const VirtualCards: FunctionComponent<Props> = ({
             <Card
               key={`${row.path}-${i}`}
               layout="flagDefault"
-              headerFirst
               gridLayout={{ tablet: { col: 12 } }}
             >
               <CardHeader>
@@ -54,13 +53,11 @@ export const VirtualCards: FunctionComponent<Props> = ({
                     alignItems: "center",
                   }}
                 >
-                  {row.code}
+                  {row.shortcode}
                 </div>
               </CardMedia>
               <CardBody>
-                <div>
-                  {row.city}, {row.state}
-                </div>
+                {row.city}, {row.state}
               </CardBody>
             </Card>
           );

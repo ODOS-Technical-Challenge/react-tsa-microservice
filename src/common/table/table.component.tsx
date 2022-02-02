@@ -7,10 +7,8 @@ import {
   CardMedia,
 } from "@trussworks/react-uswds";
 import { CenterPane, Loading } from "../index";
-import { MenuType } from "../../types";
 
 export interface Props<T = any> {
-  menu: MenuType[];
   data: T[];
 
   isLoading: boolean;
@@ -39,18 +37,14 @@ export const VirtualTable: FunctionComponent<Props> = ({
               <CardHeader style={{ marginLeft: "5rem" }}>
                 <h3 className="usa-card__heading">{row.name}</h3>
               </CardHeader>
-              <CardMedia>
-                <div
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  {row.shortcode}
-                </div>
+              <CardMedia
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <div>{row.shortcode}</div>
               </CardMedia>
               <CardBody style={{ marginLeft: "5rem" }}>
                 <div>

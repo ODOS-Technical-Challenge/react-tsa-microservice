@@ -30,7 +30,7 @@ export async function getAirportChecks(query: string) {
  */
 export async function getAirport(id: string) {
   // const url = `${BACKEND_URL}/airport/${id}`;
-
+  console.log(id);
   const data = {
     airport: "Dulles",
     city: "Sterling",
