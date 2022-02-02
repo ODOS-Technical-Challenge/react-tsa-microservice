@@ -1,10 +1,15 @@
 import React, { FunctionComponent, ReactNode } from "react";
+import { CenterPane, Loading } from "./index";
 
 interface Props {
   children: ReactNode;
+  isLoading?: boolean;
 }
 
-export const Page: FunctionComponent<Props> = ({ children }: Props) => {
+export const Page: FunctionComponent<Props> = ({
+  children,
+  isLoading,
+}: Props) => {
   return (
     <div
       style={{
@@ -15,7 +20,12 @@ export const Page: FunctionComponent<Props> = ({ children }: Props) => {
         border: "1px solid #ccc",
       }}
     >
-      {children}
+      {isLoading && (
+        <CenterPane>
+          <Loading />
+        </CenterPane>
+      )}
+      {!isLoading && children}
     </div>
   );
 };

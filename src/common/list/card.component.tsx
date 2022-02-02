@@ -5,18 +5,17 @@ import {
   CardGroup,
   CardHeader,
   CardMedia,
+  IconLink,
 } from "@trussworks/react-uswds";
 import { CenterPane, Loading } from "../index";
-import { MenuType } from "../../types";
+import { ROUTES, structureRoute } from "../../utils";
 
 export interface Props<T = any> {
-  menu: MenuType[];
   data: T[];
-
   isLoading: boolean;
 }
 
-export const VirtualTable: FunctionComponent<Props> = ({
+export const VirtualCards: FunctionComponent<Props> = ({
   data,
   isLoading,
 }: Props) => {
@@ -29,6 +28,7 @@ export const VirtualTable: FunctionComponent<Props> = ({
       )}
       <CardGroup style={{ width: "740px", margin: "0 auto" }}>
         {data.map((row, i) => {
+          const link = structureRoute(ROUTES.View, { id: `${i}` });
           return (
             <Card
               key={`${row.path}-${i}`}
@@ -36,8 +36,13 @@ export const VirtualTable: FunctionComponent<Props> = ({
               headerFirst
               gridLayout={{ tablet: { col: 12 } }}
             >
-              <CardHeader style={{ marginLeft: "5rem" }}>
-                <h3 className="usa-card__heading">{row.name}</h3>
+              <CardHeader>
+                <a href={link} className="usa-card__heading">
+                  {row.name}
+                </a>
+                <a href={link}>
+                  <IconLink height={32} />
+                </a>
               </CardHeader>
               <CardMedia>
                 <div
@@ -49,10 +54,10 @@ export const VirtualTable: FunctionComponent<Props> = ({
                     alignItems: "center",
                   }}
                 >
-                  {row.shortcode}
+                  {row.code}
                 </div>
               </CardMedia>
-              <CardBody style={{ marginLeft: "5rem" }}>
+              <CardBody>
                 <div>
                   {row.city}, {row.state}
                 </div>

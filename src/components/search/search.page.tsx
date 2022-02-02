@@ -1,15 +1,15 @@
 import React, { Fragment, FunctionComponent } from "react";
-import { Page, SubHeader, VirtualTable } from "../../common";
+import { Page, SubHeader, VirtualCards } from "../../common";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { useAirport } from "../../hooks";
+import { useAirports } from "../../hooks";
 import { Search } from "@trussworks/react-uswds";
 
 export const SearchPage: FunctionComponent = () => {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const search = params.get("search");
-  const { data, fetch, isLoading } = useAirport(search || "");
+  const { data, fetch, isLoading } = useAirports(search || "");
 
   const onSubmit = (value: any) => {
     fetch(value);
@@ -30,13 +30,13 @@ export const SearchPage: FunctionComponent = () => {
         </div>
         <div>
           <Search
-            placeholder="Search by airport name, abbriviation or location"
+            placeholder="Search by airport name, abbreviation or location"
             size="small"
             onSubmit={onSubmit}
           />
         </div>
       </Page>
-      <VirtualTable {...{ isLoading, data }} />
+      <VirtualCards {...{ isLoading, data }} />
     </Fragment>
   );
 };

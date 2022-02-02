@@ -1,14 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { CenterPane } from "./center.pane";
+import { Pane } from "./pane";
 
-describe("Common Component: Layout Component - Center Pane", () => {
+describe("Common Component: Layout Component - Pane", () => {
   it("should handle rendering children.", async () => {
     render(
-      <CenterPane>
+      <Pane>
         <input />
-      </CenterPane>
+      </Pane>
     );
 
     const child = await screen.findByRole("textbox");
@@ -17,9 +17,9 @@ describe("Common Component: Layout Component - Center Pane", () => {
 
   it("should handle overloading styles.", () => {
     const { container } = render(
-      <CenterPane style={{ display: "box" }}>
+      <Pane style={{ display: "box" }}>
         <input />
-      </CenterPane>
+      </Pane>
     );
 
     expect(container.innerHTML).toContain("box");
@@ -27,9 +27,9 @@ describe("Common Component: Layout Component - Center Pane", () => {
 
   it("should handle adding styles.", () => {
     const { container } = render(
-      <CenterPane style={{ color: "white" }}>
+      <Pane style={{ color: "white" }}>
         <input />
-      </CenterPane>
+      </Pane>
     );
 
     expect(container.innerHTML).toContain("white");

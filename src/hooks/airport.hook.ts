@@ -1,23 +1,20 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { getAirportChecks } from "../api/airport.api";
+import { getAirport } from "../api/airport.api";
 
-export const useAirport = (initial = "") => {
-  const [data, setData] = useState<any[]>([]);
+export const useAirport = (id: string) => {
+  const [data, setData] = useState<any>({});
   const [isLoading, setLoading] = useState(false);
 
-  const fetch = useCallback(async (query: string) => {
-    if (query) {
-      console.log(query);
-      setLoading(true);
-      const result = await getAirportChecks(query);
-      setData(result.data);
-      setLoading(false);
-    }
-  }, []);
+  const fetch = useCallback(async () => {
+    setLoading(true);
+    const result = await getAirport(id);
+    setData(result.data);
+    setLoading(false);
+  }, [id]);
 
   useEffect(() => {
-    fetch(initial);
+    fetch();
   }, [fetch]);
 
   return { data, isLoading, fetch };
