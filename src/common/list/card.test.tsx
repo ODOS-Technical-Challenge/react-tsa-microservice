@@ -8,7 +8,9 @@ describe("Common Component: Table Component - Virtual Table", () => {
 
   beforeEach(() => {
     props = {
-      data: [{ name: "Jane" }],
+      data: [{ name: "Jane" }, { name: "JON" }],
+      favorites: [{ name: "Jane" }],
+      selected: [{ name: "Jane" }],
       isLoading: true,
     };
   });
@@ -20,6 +22,10 @@ describe("Common Component: Table Component - Virtual Table", () => {
   });
 
   it("should handle rendering table data.", async () => {
+    props = {
+      data: [{ name: "Jane" }, { name: "JON" }],
+      isLoading: true,
+    };
     render(<VirtualCards {...props} />);
 
     const data = await screen.findByText("Jane");
