@@ -13,7 +13,7 @@ export async function getAirportChecks(searchValue: string) {
   try {
     const { status, data } = await axios.get(url);
 
-    return { data: (data as any).default, status };
+    return { data, status };
   } catch (error) {
     return handleError(error, []);
   }
